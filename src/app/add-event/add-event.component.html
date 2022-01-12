@@ -1,0 +1,120 @@
+<div class="body">
+  <nav class="navbar ps-5 pe-5 pt-0">
+    <div class="nav-img-box ps-md-5 ps-2">
+      <img src="../../assets/Logo2.png" class="img-fluid nav-img" />
+    </div>
+    <div class="logout pe-md-5 pt-3">
+      <p>Hi {{ username | titlecase }}| <a>Logout</a></p>
+    </div>
+  </nav>
+  <div class="box container mt-md-4 mb-3">
+    <div class="row rowbox">
+      <div class="col-md-7">
+        <p class="img-text">
+          <img
+            src="../../assets/arrow.png"
+            class="arrow"
+            (click)="cancel()"
+          /><span>Add Event</span>
+        </p>
+        <div class="img-box">
+          <img
+            src="../../assets/AdobeStock_333205002-scaled.png"
+            class="img-fluid big-img"
+          />
+        </div>
+      </div>
+      <div class="col-md-5 form-box">
+        <p class="form-title">Event Information</p>
+        <form #eventForm="ngForm">
+          <div class="mb-3">
+            <label for="eventname" class="form-label mb-0">Event Name</label>
+            <input
+              type="text"
+              class="form-control mt-0 pt-0"
+              id="eventname"
+              name="eventname"
+              [(ngModel)]="EventData.eventName"
+              #eventname="ngModel"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="eventdesc" class="form-label mb-0"
+              >Event Description</label
+            >
+            <input
+              type="text"
+              class="form-control pb-3"
+              id="eventdesc"
+              name="eventdesc"
+              [(ngModel)]="EventData.eventDesc"
+              #eventdesc="ngModel"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="eventurl" class="form-label mb-0">Event Url</label>
+            <input
+              type="text"
+              class="form-control"
+              id="eventurl"
+              name="eventurl"
+              [(ngModel)]="EventData.eventUrl"
+              #eventurl="ngModel"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="eventdate" class="form-label mb-0">Event Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="eventdate"
+              name="eventdate"
+              [(ngModel)]="EventData.eventDate"
+              #eventdate="ngModel"
+              required
+            />
+          </div>
+          <div class="mb-3 row">
+            <div class="col">
+              <label for="start" class="form-label mb-0">Start Time</label>
+              <input
+                type="time"
+                class="form-control"
+                id="start"
+                name="start"
+                [(ngModel)]="EventData.start"
+                #start="ngModel"
+                required
+              />
+            </div>
+            <div class="col">
+              <label for="end" class="form-label mb-0">End Time</label>
+              <input
+                type="time"
+                class="form-control"
+                id="end"
+                name="end"
+                [(ngModel)]="EventData.end"
+                #end="ngModel"
+                required
+              />
+            </div>
+          </div>
+          <span class="error" *ngIf="eventForm.touched && eventForm.invalid">
+            All fields are required
+          </span>
+          <span class="error">{{ errMsg }}</span>
+          <div class="ms-5 mt-1">
+            <a class="cancel" (click)="cancel()">Cancel</a
+            ><button class="btn btn-primary addeve" (click)="saveData()">
+              Add Event
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,193 @@
+.navbar {
+  height: 3.5rem !important;
+  background-color: #461143;
+  color: white;
+}
+.nav-img {
+  height: 2.5rem !important;
+}
+.body {
+  font-family: "IBM Plex Sans", sans-serif !important;
+}
+.nav a {
+  font-weight: bold;
+  margin-left: 2%;
+}
+.active {
+  color: #461143;
+  text-decoration: underline #461143;
+}
+.notactive {
+  text-decoration: none;
+  color: black;
+}
+.nav {
+  padding-top: 0.5% !important;
+  padding-bottom: 0.5% !important;
+  padding-left: 4%;
+}
+.nav-active {
+  background-color: #ececec;
+}
+.main {
+  background-color: #ececec;
+  margin-top: 2.5%;
+  padding: 3%;
+  padding-top: 1.5%;
+}
+.main-title {
+  color: #461143;
+  font-weight: bold;
+}
+.eventImg {
+  height: 7rem;
+  width: 12rem;
+}
+.eveImg {
+  height: 8rem;
+  width: 14rem;
+}
+.event-box {
+  background-color: white;
+  padding: 1.5% !important;
+}
+.event-title {
+  color: #461143;
+  font-size: 16px;
+  font-weight: bold;
+}
+.event-desc {
+  font-size: 14px;
+}
+.remove {
+  font-size: 12px;
+  border-radius: 0px 20px;
+  background-color: #461143;
+  border-color: #461143;
+  margin-left: 2.5%;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+.scheduled {
+  font-size: 14px;
+  border-radius: 0px 20px;
+  background-color: #adadad;
+  border-color: #adadad;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: #000000 !important;
+  font-weight: bold;
+}
+.event-date,
+.event-time {
+  text-align: right;
+  font-weight: bold;
+}
+.event-box2 {
+  text-align: center;
+  background-color: white;
+  padding: 1.5% !important;
+  display: inline-block;
+  cursor: pointer;
+}
+.event-box2:hover {
+  background-color: #461143;
+  color: white !important;
+  transition: all ease-in-out 0.2s;
+}
+.event-box2:hover .event-title {
+  color: white !important;
+  transition: all ease-in-out 0.2s;
+}
+.event-date-time {
+  font-size: 12px;
+}
+.addeve {
+  border-radius: 0px 20px;
+  background-color: #461143;
+  border-color: #461143;
+  font-size: 14px;
+  width: 14%;
+  margin-left: 73.5%;
+}
+.addeve-empty {
+  border-radius: 0px 20px;
+  background-color: #461143;
+  border-color: #461143;
+  font-size: 14px;
+  width: 14%;
+  margin-left: 42%;
+}
+.logout {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+.empty {
+  height: 25rem !important;
+  margin-left: 30%;
+}
+.empty-img {
+  margin: auto !important;
+}
+.nav-inactive,
+.main-inactive {
+  background-color: white;
+}
+.body-inactive {
+  background-color: #ececec;
+  height: 100vh;
+}
+/* modal css */
+.modal-dialog {
+  margin-right: 3% !important;
+  margin-top: 3% !important;
+  width: 450px !important;
+}
+.modal-content {
+  background-color: #461143 !important;
+  color: white;
+  border-radius: 0px 20px;
+}
+.x {
+  display: inline !important;
+  margin-left: 95% !important;
+}
+.modal-btn {
+  display: inline !important;
+  margin-top: 0% !important;
+  margin-bottom: 0% !important;
+  padding: 0% !important;
+}
+.modal-text {
+  display: inline !important;
+}
+.modal-body {
+  padding-top: 0% !important;
+}
+.modal-backdrop {
+  background-color: transparent !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .event-date,
+  .event-time {
+    text-align: left !important;
+  }
+  .remove {
+    margin-left: 0%;
+  }
+  .empty {
+    margin-left: 5%;
+    margin-bottom: 5%;
+  }
+  .body-inactive {
+    background-color: white;
+    height: 100vh;
+  }
+  .nav-active {
+    background-color: #ececec;
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+  }
+}

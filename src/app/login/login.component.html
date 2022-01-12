@@ -1,0 +1,130 @@
+<div class="row container">
+  <div class="col-md p-4 pe-5 pe-md-0">
+    <div class="loginbox mb-0 ms-md-5 ms-2">
+      <img src="../../assets/login.png" alt="" class="img-fluid" />
+    </div>
+    <div class="loginform mt-0 ms-md-5 ms-2">
+      <p class="mt-0 logintext">Login</p>
+      <form #loginform="ngForm">
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="lusername"
+            placeholder="Username"
+            name="lusername"
+            [(ngModel)]="LoginUserData.username"
+            #lusername="ngModel"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="lpassword"
+            placeholder="Password"
+            name="lpassword"
+            [(ngModel)]="LoginUserData.password"
+            #lpassword="ngModel"
+            required
+          />
+        </div>
+        <div class="error" *ngIf="loginform.touched && loginform.invalid">
+          {{ "All fields are required" }}
+        </div>
+        <div class="error" *ngIf="loginform.errors || errMsg">
+          {{ errMsg }}
+        </div>
+        <button
+          type="submit"
+          (click)="LoginUser()"
+          class="btn btn-primary mt-3 mb-md-0 mb-5"
+        >
+          LOGIN
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md p-5 ps-0">
+    <div class="registerbox">
+      <img src="../../assets/Logo.png" alt="" class="img-fluid" />
+    </div>
+    <div class="registerform ms-5">
+      <p class="mt-0 registertext">Register</p>
+      <form #registerform="ngForm">
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="yourname"
+            placeholder="Your Name"
+            name="yourname"
+            #yourname="ngModel"
+            [(ngModel)]="registeredUserData.yourname"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="registerid"
+            placeholder="Register ID"
+            name="registerId"
+            #registerId="ngModel"
+            [(ngModel)]="registeredUserData.registerId"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            placeholder="Email ID"
+            name="email"
+            #email="ngModel"
+            [(ngModel)]="registeredUserData.email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Username"
+            name="username"
+            #username="ngModel"
+            [(ngModel)]="registeredUserData.username"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+            name="password"
+            #password="ngModel"
+            [(ngModel)]="registeredUserData.password"
+            required
+          />
+        </div>
+        <div class="error" *ngIf="registerform.touched && registerform.invalid">
+          {{ "All fields are required" }}
+        </div>
+        <div class="error">{{ errMsg1 }}</div>
+        <button
+          type="submit"
+          (click)="registerUser()"
+          class="btn btn-primary mt-3 mb-md-0 mb-3"
+        >
+          REGISTER
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

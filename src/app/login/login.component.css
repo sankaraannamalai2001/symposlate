@@ -1,0 +1,52 @@
+.loginbox {
+  height: 63%;
+  width: 65%;
+  display: block;
+}
+.loginform {
+  width: 75%;
+}
+.row {
+  margin: auto;
+  font-family: "IBM Plex Sans", sans-serif !important;
+}
+.logintext,
+.registertext {
+  font-size: 25px;
+  font-weight: bold;
+  color: #461143;
+}
+.registerbox {
+  width: 90%;
+  height: 29%;
+}
+.registerform {
+  width: 75%;
+  margin-left: 15% !important;
+}
+.registerform input,
+.loginform input {
+  height: 3.2rem;
+  border-radius: 0px 20px;
+}
+button {
+  width: 100% !important;
+  height: 3.2rem;
+  border-radius: 0px 20px;
+  background-color: #461143;
+  border-color: #461143;
+}
+button:hover {
+  color: #461143;
+  background-color: white;
+  border-color: #461143;
+}
+input:active,
+input:focus {
+  border-color: #461143 !important;
+  box-shadow: 0 0 0 0.2rem #70006b;
+}
+.error {
+  color: red;
+  font-size: 14px;
+}

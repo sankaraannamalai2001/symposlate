@@ -1,0 +1,81 @@
+<div
+  class="body"
+  [ngClass]="{ 'body-inactive': isFEventEmpty && isPEventEmpty }"
+>
+  <nav class="navbar ps-5 pe-5 pt-0">
+    <div class="nav-img-box ps-md-5 ps-2">
+      <img src="../../assets/Logo2.png" class="img-fluid nav-img" />
+    </div>
+    <div class="logout pe-md-5 pt-3">
+      <p>Hi {{ username | titlecase }} | <a (click)="logoutUser()">Logout</a></p>
+    </div>
+  </nav>
+  <div
+    class="nav container-fluid nav-active"
+    [ngClass]="{ 'nav-inactive': isFEventEmpty && isPEventEmpty }"
+  >
+    <a routerLink="/allevent" class="notactive">All Events</a>
+    <a class="active">My Calendar</a>
+  </div>
+  <div
+    class="main container"
+    [ngClass]="{ 'main-inactive': isFEventEmpty && isPEventEmpty }"
+  >
+    <p class="main-title" *ngIf="!isFEventEmpty">Upcoming events</p>
+    <p class="main-title" *ngIf="isFEventEmpty && isPEventEmpty">My Calendar</p>
+    <div class="empty-img" *ngIf="isFEventEmpty && isPEventEmpty">
+      <img src="../../assets/nodata.png" class="img-fluid empty" />
+    </div>
+    <div *ngFor="let i of fevents" class="event-container">
+      <div *ngIf="i.isScheduled">
+        <div class="event-box row p-2 mb-3">
+          <div class="col-md-2 mt-md-0 mt-2">
+            <img class="eventImg" src="{{ i['eventUrl'] }}" />
+          </div>
+          <div class="col-md-8">
+            <p class="event-title mb-1">{{ i["eventName"] }}</p>
+            <p class="event-desc">
+              {{ i["eventDesc"] }}
+            </p>
+          </div>
+          <div class="col-md-2">
+            <p class="event-date mb-1">{{ i["eventDate"] | date }}</p>
+            <p class="event-time mb-1">
+              {{ "01/01/2011 " + i["start"] | date: "shortTime" }} -
+              {{ "01/01/2011 " + i["end"] | date: "shortTime" }}
+            </p>
+            <button
+              class="btn btn-primary remove mb-2 mb-md-0"
+              (click)="removeCalendar(i['event_id'])"
+            >
+              REMOVE FROM CALENDAR
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="main-title" *ngIf="!isPEventEmpty">Past events</p>
+    <div *ngFor="let i of pevents" class="event-container">
+      <div *ngIf="i.isScheduled">
+        <div class="event-box row p-2 mb-3">
+          <div class="col-md-2 mt-md-0 mt-2">
+            <img class="eventImg" src="{{ i['eventUrl'] }}" />
+          </div>
+          <div class="col-md-8">
+            <p class="event-title mb-1">{{ i["eventName"] }}</p>
+            <p class="event-desc">
+              {{ i["eventDesc"] }}
+            </p>
+          </div>
+          <div class="col-md-2">
+            <p class="event-date mb-3 mt-4">{{ i["eventDate"] | date }}</p>
+            <p class="event-time mb-1">
+              {{ "01/01/2011 " + i["start"] | date: "shortTime" }} -
+              {{ "01/01/2011 " + i["end"] | date: "shortTime" }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

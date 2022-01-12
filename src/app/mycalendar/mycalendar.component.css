@@ -1,0 +1,106 @@
+.navbar {
+  height: 3.5rem !important;
+  background-color: #461143;
+  color: white;
+}
+.nav-img {
+  height: 2.5rem !important;
+}
+.body {
+  font-family: "IBM Plex Sans", sans-serif !important;
+}
+.nav a {
+  font-weight: bold;
+  margin-left: 2%;
+}
+.active {
+  color: #461143;
+  text-decoration: underline #461143;
+}
+.notactive {
+  text-decoration: none;
+  color: black;
+}
+.nav {
+  padding-top: 0.5% !important;
+  padding-bottom: 0.5% !important;
+  padding-left: 4%;
+}
+.nav-active {
+  background-color: #ececec;
+}
+.main {
+  background-color: #ececec;
+  margin-top: 2.5%;
+  padding: 3%;
+  padding-top: 1.5%;
+}
+.main-title {
+  color: #461143;
+  font-weight: bold;
+}
+.eventImg {
+  height: 7rem;
+  width: 12rem;
+}
+.event-box {
+  background-color: white;
+  padding: 1.5% !important;
+}
+.event-title {
+  color: #461143;
+  font-size: 16px;
+  font-weight: bold;
+}
+.event-desc {
+  font-size: 14px;
+}
+.remove {
+  font-size: 12px;
+  border-radius: 0px 20px;
+  background-color: #461143;
+  border-color: #461143;
+  margin-left: 2.5%;
+}
+.event-date,
+.event-time {
+  text-align: right;
+  font-weight: bold;
+}
+.empty {
+  height: 25rem !important;
+  margin-left: 30%;
+}
+.empty-img {
+  margin: auto !important;
+}
+.nav-inactive,
+.main-inactive {
+  background-color: white;
+}
+.body-inactive {
+  background-color: #ececec;
+  height: 100vh;
+}
+@media only screen and (max-width: 768px) {
+  .event-date,
+  .event-time {
+    text-align: left !important;
+  }
+  .remove {
+    margin-left: 0%;
+  }
+  .empty {
+    margin-left: 5%;
+    margin-bottom: 5%;
+  }
+  .body-inactive {
+    background-color: white;
+    height: 100vh;
+  }
+  .nav-active {
+    background-color: #ececec;
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+  }
+}
