@@ -50,10 +50,11 @@ passport.deserializeUser(function (id, done) {
 app.use("/user", user);
 app.use("/events", events);
 
-app.get("/", function (req, res) {
-  res.status(200).send("Welcome to Passport with Sequelize");
-});
+app.use(express.static(__dirname + "/dist/eventApp"));
 
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/dist/eventApp/index.html"));
+});
 app.listen(process.env.PORT || 3000, function (err) {
   if (!err) console.log("Site is live");
   else console.log(err);
