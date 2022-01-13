@@ -109,4 +109,9 @@ export class MycalendarComponent implements OnInit {
         }
       );
   }
+  goToAllevent() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['allevent']);
+    });
+  }
 }

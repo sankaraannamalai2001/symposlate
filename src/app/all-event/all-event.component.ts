@@ -114,4 +114,9 @@ export class AllEventComponent implements OnInit {
     if (this.fevents.length === 0) this.isFEventEmpty = true;
     else this.isFEventEmpty = false;
   }
+  goToMycalendar() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['mycalendar']);
+    });
+  }
 }

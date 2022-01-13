@@ -18,7 +18,7 @@
     [ngClass]="{ 'nav-inactive': isFEventEmpty && isPEventEmpty }"
   >
     <a class="active">All Events</a>
-    <a *ngIf="isAdmin" class="notactive" routerLink="/mycalendar"
+    <a *ngIf="isAdmin" class="notactive" (click)="goToMycalendar()"
       >My Calendar</a
     >
   </div>

@@ -14,7 +14,7 @@
     class="nav container-fluid nav-active"
     [ngClass]="{ 'nav-inactive': isFEventEmpty && isPEventEmpty }"
   >
-    <a routerLink="/allevent" class="notactive">All Events</a>
+    <a  (click)="goToAllevent()" class="notactive">All Events</a>
     <a class="active">My Calendar</a>
   </div>
   <div
