@@ -24,11 +24,11 @@ export class MycalendarComponent implements OnInit {
   isAdmin = true;
   isPEventEmpty: boolean = false;
   isFEventEmpty: boolean = false;
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.user = localStorage.getItem('userInfo');
     this.username = JSON.parse(this.user).user;
-    await this.fetchMyCalendar(JSON.parse(this.user).user_id);
-    await this.fetchEvents();
+    this.fetchMyCalendar(JSON.parse(this.user).user_id);
+    this.fetchEvents();
 
     if (this.username === 'admin') {
       this.isAdmin = false;
@@ -103,6 +103,7 @@ export class MycalendarComponent implements OnInit {
             .then(() => {
               this.router.navigate(['mycalendar']);
             });
+          window.location.reload();
         },
         (err) => {
           console.log(err);

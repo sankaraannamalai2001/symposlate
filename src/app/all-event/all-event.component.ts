@@ -23,11 +23,11 @@ export class AllEventComponent implements OnInit {
   calevents: any = [];
   isPEventEmpty: boolean = false;
   isFEventEmpty: boolean = false;
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.user = localStorage.getItem('userInfo');
     this.username = JSON.parse(this.user).user;
-    await this.fetchMyCalendar(JSON.parse(this.user).user_id);
-    await this.fetchEvents();
+    this.fetchMyCalendar(JSON.parse(this.user).user_id);
+    this.fetchEvents();
 
     if (this.username === 'admin') {
       this.isAdmin = false;
@@ -78,6 +78,7 @@ export class AllEventComponent implements OnInit {
             .then(() => {
               this.router.navigate(['allevent']);
             });
+          window.location.reload();
         },
         (err) => {
           (document.querySelector('.modal-btn') as HTMLElement).click();
