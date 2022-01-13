@@ -7,14 +7,16 @@
       <img src="../../assets/Logo2.png" class="img-fluid nav-img" />
     </div>
     <div class="logout pe-md-5 pt-3">
-      <p>Hi {{ username | titlecase }} | <a (click)="logoutUser()">Logout</a></p>
+      <p>
+        Hi {{ username | titlecase }} | <a (click)="logoutUser()">Logout</a>
+      </p>
     </div>
   </nav>
   <div
     class="nav container-fluid nav-active"
     [ngClass]="{ 'nav-inactive': isFEventEmpty && isPEventEmpty }"
   >
-    <a  (click)="goToAllevent()" class="notactive">All Events</a>
+    <a routerLink="/allevent" class="notactive">All Events</a>
     <a class="active">My Calendar</a>
   </div>
   <div

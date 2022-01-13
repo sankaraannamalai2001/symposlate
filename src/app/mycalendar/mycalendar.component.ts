@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { EventService } from '../event.service';
 
@@ -12,11 +12,25 @@ export class MycalendarComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private eventService: EventService,
-    private router: Router
-  ) {}
+    private router: Router,
+    route: ActivatedRoute
+  ) {
+    route.params.subscribe((val) => {
+      // put the code from `ngOnInit` here
+      this.user = localStorage.getItem('userInfo');
+
+      this.fetchMyCalendar(JSON.parse(this.user).user_id);
+
+      this.username = JSON.parse(this.user).user;
+
+      if (this.username === 'admin') {
+        this.isAdmin = false;
+      }
+    });
+  }
   public user: any;
   public username: any;
-  mycalendar: any = [];
+  mycalendar: string[] = [];
   pevents: any = [];
   fevents: any = [];
   events = [];
@@ -24,22 +38,16 @@ export class MycalendarComponent implements OnInit {
   isAdmin = true;
   isPEventEmpty: boolean = false;
   isFEventEmpty: boolean = false;
-  ngOnInit(): void {
-    this.user = localStorage.getItem('userInfo');
-    this.username = JSON.parse(this.user).user;
-    this.fetchMyCalendar(JSON.parse(this.user).user_id);
-    this.fetchEvents();
-
-    if (this.username === 'admin') {
-      this.isAdmin = false;
-    }
-  }
+  ngOnInit(): void {}
   fetchMyCalendar(user_id: number) {
+    var calendar;
     this.eventService.fetchCalendar(user_id).subscribe(
       (res) => {
         let a = JSON.parse(res).events;
-        if (a == '[]') this.mycalendar = [];
+        if (a === '[]') this.mycalendar = [];
         else this.mycalendar = a.replace('[', '').replace(']', '').split(',');
+        this.fetchEvents();
+        //console.log(this.mycalendar);
       },
       (err) => {
         console.log(err);
@@ -62,8 +70,8 @@ export class MycalendarComponent implements OnInit {
     for (let e of events) {
       e.inProgress = false;
       e.isScheduled = false;
-
-      if (this.mycalendar.includes(e.event_id.toString())) e.isScheduled = true;
+      const a = e.event_id.toString();
+      if (this.mycalendar.includes(a)) e.isScheduled = true;
 
       let curDate = new Date().getTime();
       let eveDate = Date.parse(
@@ -99,9 +107,9 @@ export class MycalendarComponent implements OnInit {
         (res) => {
           console.log('Successfully deleted');
           this.router
-            .navigateByUrl('/', { skipLocationChange: true })
+            .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
             .then(() => {
-              this.router.navigate(['allevent']);
+              this.router.navigate(['mycalendar']);
             });
         },
         (err) => {
@@ -110,8 +118,6 @@ export class MycalendarComponent implements OnInit {
       );
   }
   goToAllevent() {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['allevent']);
-    });
+    this.router.navigate(['allevent']);
   }
 }

@@ -25,15 +25,6 @@ export class AuthService {
   public async isAuthenticated(): Promise<boolean> {
     let userData = localStorage.getItem('userInfo');
     if (userData && JSON.parse(userData)) {
-      await this.isauth().subscribe(
-        (res) => {
-          return true;
-        },
-        (err) => {
-          console.log(err);
-          return false;
-        }
-      );
       return true;
     }
     return false;
@@ -48,7 +39,6 @@ export class AuthService {
     this.user = user;
   }
   public getUserId() {
-    
     return this.user;
   }
   public isauth() {

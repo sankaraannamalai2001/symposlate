@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { EventService } from '../event.service';
 @Component({
@@ -11,8 +11,19 @@ export class AllEventComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private eventService: EventService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    route.params.subscribe((val) => {
+      // put the code from `ngOnInit` here
+      this.user = localStorage.getItem('userInfo');
+      this.username = JSON.parse(this.user).user;
+      this.fetchMyCalendar(JSON.parse(this.user).user_id);
+      if (this.username === 'admin') {
+        this.isAdmin = false;
+      }
+    });
+  }
   public user: any;
   public username: any;
   pevents: any = [];
@@ -23,16 +34,7 @@ export class AllEventComponent implements OnInit {
   calevents: any = [];
   isPEventEmpty: boolean = false;
   isFEventEmpty: boolean = false;
-  ngOnInit(): void {
-    this.user = localStorage.getItem('userInfo');
-    this.username = JSON.parse(this.user).user;
-    this.fetchMyCalendar(JSON.parse(this.user).user_id);
-    this.fetchEvents();
-
-    if (this.username === 'admin') {
-      this.isAdmin = false;
-    }
-  }
+  ngOnInit(): void {}
   isAdmin = true;
   fetchEvents() {
     this.eventService.fetchEvents().subscribe(
@@ -53,6 +55,7 @@ export class AllEventComponent implements OnInit {
         let a = JSON.parse(res).events;
         if (a == '[]') this.mycalendar = [];
         else this.mycalendar = a.replace('[', '').replace(']', '').split(',');
+        this.fetchEvents();
       },
       (err) => {
         console.log(err);
@@ -74,7 +77,7 @@ export class AllEventComponent implements OnInit {
       .subscribe(
         (res) => {
           this.router
-            .navigateByUrl('/', { skipLocationChange: true })
+            .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
             .then(() => {
               this.router.navigate(['mycalendar']);
             });
@@ -113,10 +116,5 @@ export class AllEventComponent implements OnInit {
     else this.isPEventEmpty = false;
     if (this.fevents.length === 0) this.isFEventEmpty = true;
     else this.isFEventEmpty = false;
-  }
-  goToMycalendar() {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['mycalendar']);
-    });
   }
 }
