@@ -76,9 +76,8 @@ export class AllEventComponent implements OnInit {
           this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
-              this.router.navigate(['allevent']);
+              this.router.navigate(['mycalendar']);
             });
-          window.location.reload();
         },
         (err) => {
           (document.querySelector('.modal-btn') as HTMLElement).click();

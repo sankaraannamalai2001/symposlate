@@ -101,9 +101,8 @@ export class MycalendarComponent implements OnInit {
           this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
-              this.router.navigate(['mycalendar']);
+              this.router.navigate(['allevent']);
             });
-          window.location.reload();
         },
         (err) => {
           console.log(err);
