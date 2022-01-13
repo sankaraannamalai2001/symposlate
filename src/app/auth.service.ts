@@ -6,10 +6,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
   constructor(private http: HttpClient, private route: Router) {}
-  private _regUrl = 'http://localhost:3000/user/register';
-  private _loginUrl = 'http://localhost:3000/user/login';
-  private _logoutUrl = 'http://localhost:3000/user/logout';
-  private _authUrl = 'http://localhost:3000/user/isauth';
+  private _regUrl = 'https://symposlate.herokuapp.com/user/register';
+  private _loginUrl = 'https://symposlate.herokuapp.com/user/login';
+  private _logoutUrl = 'https://symposlate.herokuapp.com/user/logout';
+  private _authUrl = 'https://symposlate.herokuapp.com/user/isauth';
   private user!: Object;
   registerUser(user: object) {
     return this.http.post(this._regUrl, user, { responseType: 'text' });

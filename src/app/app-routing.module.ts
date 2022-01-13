@@ -18,22 +18,22 @@ const routes: Routes = [
   {
     path: 'addevent',
     component: AddEventComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'editevent',
     component: EditEventComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'allevent',
     component: AllEventComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'mycalendar',
     component: MycalendarComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

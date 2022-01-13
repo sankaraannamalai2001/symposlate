@@ -29,7 +29,7 @@ export class AllEventComponent implements OnInit {
     this.fetchMyCalendar(JSON.parse(this.user).user_id);
     this.fetchEvents();
 
-    if (this.username === 'sankar') {
+    if (this.username === 'admin') {
       this.isAdmin = false;
     }
   }
@@ -81,7 +81,6 @@ export class AllEventComponent implements OnInit {
         },
         (err) => {
           (document.querySelector('.modal-btn') as HTMLElement).click();
-          console.log(err);
         }
       );
   }

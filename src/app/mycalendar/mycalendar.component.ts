@@ -30,7 +30,7 @@ export class MycalendarComponent implements OnInit {
     this.fetchMyCalendar(JSON.parse(this.user).user_id);
     this.fetchEvents();
 
-    if (this.username === 'sankar') {
+    if (this.username === 'admin') {
       this.isAdmin = false;
     }
   }

@@ -5,14 +5,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class EventService {
-  private _addEventUrl = 'http://localhost:3000/events/addevent';
-  private _editEventUrl = 'http://localhost:3000/events/updateevent/';
-  private _deleteEventUrl = 'http://localhost:3000/events/deleteevent/';
-  private _allEventUrl = 'http://localhost:3000/events/allevents';
-  private _myCalendarUrl = 'http://localhost:3000/events/mycalendar/';
-  private _addToCalendarUrl = 'http://localhost:3000/events/addcalendar/';
+  private _addEventUrl = 'https://symposlate.herokuapp.com/events/addevent';
+  private _editEventUrl = 'https://symposlate.herokuapp.com/events/updateevent/';
+  private _deleteEventUrl = 'https://symposlate.herokuapp.com/events/deleteevent/';
+  private _allEventUrl = 'https://symposlate.herokuapp.com/events/allevents';
+  private _myCalendarUrl = 'https://symposlate.herokuapp.com/events/mycalendar/';
+  private _addToCalendarUrl = 'https://symposlate.herokuapp.com/events/addcalendar/';
   private _removeFromCalendarUrl =
-    'http://localhost:3000/events/deletecalendar/';
+    'https://symposlate.herokuapp.com/events/deletecalendar/';
   constructor(private http: HttpClient) {}
   addEventData(eventData: object) {
     return this.http.post(this._addEventUrl, eventData, {

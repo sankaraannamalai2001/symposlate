@@ -29,7 +29,6 @@ export class EditEventComponent implements OnInit {
     user_id: '1',
   };
   editData() {
-    console.log(this.EventData);
     this.eventService.editEventData(this.EventData, this.currentEve).subscribe(
       (res) => {
         console.log(res);
@@ -42,7 +41,6 @@ export class EditEventComponent implements OnInit {
     );
   }
   deleteData() {
-    console.log(this.EventData);
     this.eventService.deleteEventData(this.currentEve).subscribe(
       (res) => {
         this.router.navigate(['allevent']);

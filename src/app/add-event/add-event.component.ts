@@ -21,7 +21,6 @@ export class AddEventComponent implements OnInit {
     user_id: '1',
   };
   saveData() {
-    console.log(this.EventData);
     this.eventService.addEventData(this.EventData).subscribe(
       (res) => {
         this.router.navigate(['allevent']);
