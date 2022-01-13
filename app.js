@@ -10,7 +10,7 @@ var cookieParser = require("cookie-parser");
 var env = require("dotenv").config();
 const sequelize = require("./utils/db");
 const cors = require("cors");
-
+const path = require("path");
 sequelize.sync();
 var LocalStrategy = require("passport-local").Strategy;
 // sequelize.sync({ force: true }).then(() => {
