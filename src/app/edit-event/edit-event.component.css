@@ -87,6 +87,16 @@
 .cancel:hover {
   color: rgb(161, 161, 161);
 }
+
+@media only screen and (max-width: 980px) {
+  .rowbox {
+    height: 68rem !important;
+    /* margin-bottom: 2rem !important; */
+  }
+  .body {
+    height: 105vh;
+  }
+}
 @media only screen and (max-width: 768px) {
   .box {
     background-color: white;
@@ -100,18 +110,18 @@
     /* margin-bottom: 2rem !important; */
   }
   .big-img {
-    height: 25rem;
+    height: 16rem;
   }
   .form-box {
     background-color: #ececec;
-    padding: 3rem;
+    padding: 1rem;
     padding-top: 1rem;
     height: 35rem !important;
   }
   .body {
-    height: 165vh;
+    height: 105vh;
   }
   .cancel {
-    margin-left: 18%;
+    margin-left: 0%;
   }
 }

@@ -65,8 +65,8 @@
   background-color: #461143;
   border-color: #461143;
   margin-left: 2.5%;
-  padding-left: 22px;
-  padding-right: 22px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .scheduled {
   font-size: 14px;
@@ -174,9 +174,7 @@
   .event-time {
     text-align: left !important;
   }
-  .remove {
-    margin-left: 0%;
-  }
+
   .empty {
     margin-left: 5%;
     margin-bottom: 5%;
@@ -189,5 +187,14 @@
     background-color: #ececec;
     padding-top: 2% !important;
     padding-bottom: 2% !important;
+  }
+  .addeve {
+    width: 30%;
+    margin-left: 60%;
+  }
+}
+@media (min-width: 1180px) {
+  .container {
+    max-width: 1290px;
   }
 }

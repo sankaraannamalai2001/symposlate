@@ -61,6 +61,7 @@
   background-color: #461143;
   border-color: #461143;
   margin-left: 2.5%;
+  width: 100%;
 }
 .event-date,
 .event-time {
@@ -89,6 +90,7 @@
   }
   .remove {
     margin-left: 0%;
+    width: auto;
   }
   .empty {
     margin-left: 5%;
@@ -102,5 +104,15 @@
     background-color: #ececec;
     padding-top: 2% !important;
     padding-bottom: 2% !important;
+  }
+}
+@media (min-width: 1180px) {
+  .container {
+    max-width: 1290px;
+  }
+}
+@media (max-width: 1180px) {
+  .remove {
+    width: auto;
   }
 }

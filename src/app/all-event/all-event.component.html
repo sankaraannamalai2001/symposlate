@@ -2,7 +2,7 @@
   class="body"
   [ngClass]="{ 'body-inactive': isFEventEmpty && isPEventEmpty }"
 >
-  <nav class="navbar ps-5 pe-5 pt-0">
+  <nav class="navbar ps-md-5 pe-md-5 ps-2 pe-3 pt-0">
     <div class="nav-img-box ps-md-5 ps-2">
       <img src="../../assets/Logo2.png" class="img-fluid nav-img" />
     </div>
@@ -50,16 +50,16 @@
     <div *ngIf="isAdmin">
       <div *ngFor="let i of fevents" class="event-container">
         <div class="event-box row p-2 mb-3">
-          <div class="col-md-2 mt-md-0 mt-2">
+          <div class="col-xl-2 mt-md-0 mt-2">
             <img class="eventImg" src="{{ i['eventUrl'] }}" />
           </div>
-          <div class="col-md-8">
+          <div class="col-xl-8">
             <p class="event-title mb-1">{{ i["eventName"] }}</p>
             <p class="event-desc">
               {{ i["eventDesc"] }}
             </p>
           </div>
-          <div class="col-md-2">
+          <div class="col-xl-2">
             <p class="event-date mb-1">{{ i["eventDate"] | date }}</p>
             <p class="event-time mb-1">
               {{ "01/01/2011 " + i["start"] | date: "shortTime" }} -
@@ -113,16 +113,16 @@
     <div *ngIf="isAdmin">
       <div *ngFor="let i of pevents" class="event-container">
         <div class="event-box row p-2 mb-3">
-          <div class="col-md-2 mt-md-0 mt-2">
+          <div class="col-xl-2 mt-md-0 mt-2">
             <img class="eventImg" src="{{ i['eventUrl'] }}" />
           </div>
-          <div class="col-md-8">
+          <div class="col-xl-8 col-md-6">
             <p class="event-title mb-1">{{ i["eventName"] }}</p>
             <p class="event-desc">
               {{ i["eventDesc"] }}
             </p>
           </div>
-          <div class="col-md-2">
+          <div class="col-xl-2">
             <p class="event-date mb-3 mt-4">{{ i["eventDate"] | date }}</p>
             <p class="event-time mb-1">
               {{ "01/01/2011 " + i["start"] | date: "shortTime" }} -

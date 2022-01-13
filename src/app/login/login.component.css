@@ -50,3 +50,23 @@ input:focus {
   color: red;
   font-size: 14px;
 }
+@media only screen and (max-width: 768px) {
+  .loginbox {
+    height: 40%;
+    width: 80%;
+  }
+  .loginform {
+    width: 98% !important;
+  }
+  .registerform {
+    width: 78%;
+  }
+  .registerbox {
+    width: 90%;
+    height: 20%;
+    margin-left: 3%;
+  }
+  .registerform {
+    margin-left: 10% !important;
+  }
+}
