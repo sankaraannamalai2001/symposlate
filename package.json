@@ -29,6 +29,7 @@
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "jquery": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
     "login": "^0.8.0",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
