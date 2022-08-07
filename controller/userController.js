@@ -1,10 +1,4 @@
-const User = require("../model/userModel");
-const bcrypt = require("bcrypt");
-var Sequelize = require("sequelize");
 const passport = require("passport");
-var express = require("express");
-var app = express();
-const Op = Sequelize.Op;
 //Refer passport.js from utils for register and login methods--ps:Sankar :)
 exports.register = function (req, res, next) {
   passport.authenticate("local-signup", function (err, user, info) {
@@ -38,7 +32,6 @@ exports.login = function (req, res, next) {
       if (err) {
         return next(err);
       }
-      //console.log(req.user);
       req.session.isAuthenticated = true;
       req.isAuthenticated = true;
       res.locals.isAuthenticated = true;
@@ -57,6 +50,5 @@ exports.logout = (req, res, next) => {
 };
 
 exports.isAuthenticated = (req, res, next) => {
-  console.log("hello");
   return res.status(200).send(req.user);
 };

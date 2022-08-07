@@ -60,7 +60,6 @@ exports.deleteEvent = async (req, res) => {
       (async function () {
         await User.findAll()
           .then((users) => {
-            //console.log(users);
             for (let data of users) {
               events = data.dataValues.mycalendar.split(",");
               console.log(events);
@@ -69,16 +68,14 @@ exports.deleteEvent = async (req, res) => {
                 events.splice(index, 1);
                 if (events.length === 0) events.push("[]");
                 mycalendar = events.toString();
-                //console.log(mycalendar);
+
                 (async function () {
                   await data
                     .update(
                       { mycalendar: mycalendar },
                       { where: { user_id: id } }
                     )
-                    .then((data) => {
-                      //console.log("Successfully removed from mycalendar");
-                    })
+                    .then((data) => {})
                     .catch((err) => {
                       console.log("Error removing event from mycalendar");
                     });

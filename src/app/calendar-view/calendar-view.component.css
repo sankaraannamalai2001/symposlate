@@ -1,0 +1,228 @@
+.navbar {
+  height: 3.5rem !important;
+  background-color: #461143;
+  color: white;
+}
+.buttons {
+  border-radius: 0px 20px;
+  background-color: #461143;
+  border-color: #461143;
+  font-size: 14px;
+  width: 35%;
+}
+.logout {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+.eventBadge {
+  background-color: #461143;
+  width: 150px;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+.modalImg {
+  height: 150px;
+  width: 500px;
+}
+.btn-close {
+  position: absolute;
+  left: 92%;
+  top: 5%;
+  color: white !important;
+}
+.nav-img {
+  height: 2.5rem !important;
+}
+.body {
+  font-family: "IBM Plex Sans", sans-serif !important;
+}
+.nav a {
+  font-weight: bold;
+  margin-left: 2%;
+}
+.active {
+  color: #461143;
+  text-decoration: underline #461143;
+}
+.notactive {
+  text-decoration: none;
+  color: black;
+}
+.nav {
+  padding-top: 0.5% !important;
+  padding-bottom: 0.5% !important;
+  padding-left: 4%;
+}
+.nav-active {
+  background-color: #ececec;
+}
+.main {
+  background-color: #ececec;
+  margin-top: 2.5%;
+  padding: 3%;
+  padding-top: 1.5%;
+}
+.main-title {
+  color: #461143;
+  font-weight: bold;
+}
+.eventImg {
+  height: 7rem;
+  width: 12rem;
+}
+.event-box {
+  background-color: white;
+  padding: 1.5% !important;
+}
+
+.event-title {
+  color: #461143;
+  font-size: 16px;
+  font-weight: bold;
+}
+.event-desc {
+  font-size: 14px;
+}
+.remove {
+  font-size: 12px;
+  border-radius: 0px 20px;
+  background-color: #461143;
+  border-color: #461143;
+  margin-left: 2.5%;
+  width: 100%;
+}
+.event-date,
+.event-time {
+  font-weight: bold;
+}
+.empty {
+  height: 25rem !important;
+  margin-left: 30%;
+}
+.empty-img {
+  margin: auto !important;
+}
+.nav-inactive,
+.main-inactive {
+  background-color: white;
+}
+.body-inactive {
+  background-color: #ececec;
+  height: 100vh;
+}
+.form-title {
+  text-align: center;
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+}
+.box {
+  background-color: white;
+  padding-top: 2.5rem;
+  padding-right: 4rem;
+  padding-left: 4rem;
+  padding-bottom: 2rem;
+}
+.addeve {
+  border-radius: 0px 20px;
+  background-color: #461143;
+  border-color: #461143;
+  margin-left: 9%;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+.cancel {
+  text-decoration: none;
+  color: black;
+  margin-left: 25%;
+  cursor: pointer;
+}
+.form-box {
+  background-color: #ececec;
+  padding: 3rem;
+  padding-top: 1rem;
+  height: 28rem !important;
+}
+.form-box input {
+  border-radius: 0px 20px;
+  border: none;
+}
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+  .remove {
+    margin-left: 0%;
+    width: auto;
+  }
+  .empty {
+    margin-left: 5%;
+    margin-bottom: 5%;
+  }
+  .body-inactive {
+    background-color: white;
+    height: 100vh;
+  }
+  .nav-active {
+    background-color: #ececec;
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+  }
+}
+@media (min-width: 1180px) {
+  .container {
+    max-width: 1290px;
+  }
+}
+@media (max-width: 1180px) {
+  .remove {
+    width: auto;
+  }
+}
+
+.successModal-dialog,
+.errModal-dialog {
+  margin-right: 3% !important;
+  margin-top: 3% !important;
+  width: 380px !important;
+}
+.successModal-content {
+  background-color: #00c851 !important;
+  border-color: #00c851 !important;
+  color: white;
+  border-radius: 0px 20px;
+}
+.errModal-content {
+  background-color: #ff4444 !important;
+  border-color: #ff4444 !important;
+  color: white;
+  border-radius: 0px 20px;
+}
+
+.x {
+  display: inline !important;
+  margin-left: 95% !important;
+}
+.successModal-btn,
+.errModal-btn {
+  display: inline !important;
+  margin-top: 0% !important;
+  margin-bottom: 0% !important;
+  padding: 0% !important;
+}
+.successModal-text,
+.errModal-text {
+  display: inline !important;
+}
+.successModal-body,
+.errModal-body {
+  padding-top: 0% !important;
+}
+.successModal-backdrop,
+.errModal-backdrop {
+  background-color: transparent !important;
+}

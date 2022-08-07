@@ -1,0 +1,411 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div
+  class="body"
+  [ngClass]="{ 'body-inactive': isFEventEmpty && isPEventEmpty }"
+>
+  <nav class="navbar ps-md-5 pe-md-5 ps-2 pe-4 pt-0">
+    <div class="nav-img-box ps-md-5 ps-2">
+      <img src="../../assets/Logo2.png" class="img-fluid nav-img" />
+    </div>
+    <div class="logout pe-md-5 pt-3">
+      <p>
+        Hi {{ username | titlecase }} |
+        <a class="logout" (click)="logoutUser()">Logout</a>
+      </p>
+    </div>
+  </nav>
+  <div
+    class="nav container-fluid nav-active"
+    [ngClass]="{ 'nav-inactive': isFEventEmpty && isPEventEmpty }"
+  >
+    <a routerLink="/allevent" class="notactive">All Events</a>
+    <a routerLink="/mycalendar" class="notactive">My Calendar</a>
+
+    <a class="active">Calendar View</a>
+  </div>
+  <div class="main container p-5 mt-3">
+    <div class="text-center mt-3" *ngIf="isloading">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div *ngIf="!isloading">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <div class="btn-group">
+            <div
+              class="btn btn-primary buttons ps-3 py-2"
+              mwlCalendarPreviousView
+              [view]="view"
+              [(viewDate)]="viewDate"
+              (viewDateChange)="closeOpenMonthViewDay()"
+            >
+              Previous
+            </div>
+            <div
+              class="btn btn-outline-secondary buttons text-white ps-4 py-2 pe-1 todayBtn"
+              mwlCalendarToday
+              [(viewDate)]="viewDate"
+            >
+              Today
+            </div>
+            <div
+              class="btn btn-primary buttons buttons ps-3 py-2"
+              mwlCalendarNextView
+              [view]="view"
+              [(viewDate)]="viewDate"
+              (viewDateChange)="closeOpenMonthViewDay()"
+            >
+              Next
+            </div>
+          </div>
+        </div>
+        <ng-template
+          #customCellTemplate
+          let-day="day"
+          let-locale="locale"
+          let-trackByEventId="trackByEventId"
+          let-eventClicked="eventClicked"
+        >
+          <div class="cal-cell-top" (click)="addEvent(day.date)">
+            <span class="cal-day-number">{{
+              day.date | calendarDate: "monthViewDayNumber":locale
+            }}</span>
+          </div>
+          <span
+            *ngFor="let event of day.events; trackBy: trackByEventId"
+            class="eventBadge"
+            style="margin: 5px"
+            (mwlClick)="openModal(event.title)"
+          >
+            {{
+              event.title.length > 15
+                ? (event.title | slice: 0:15) + ".."
+                : event.title
+            }}</span
+          >
+        </ng-template>
+        <div class="col-md-4">
+          <h3>{{ viewDate | calendarDate: view + "ViewTitle":"en" }}</h3>
+        </div>
+        <div class="col-md-4">
+          <div class="btn-group">
+            <div
+              class="btn btn-primary text-white buttons ps-4 py-2 pe-1"
+              (click)="setView(CalendarView.Month)"
+              [class.active]="view === CalendarView.Month"
+            >
+              Month
+            </div>
+            <div
+              class="btn btn-primary buttons text-white ps-4 py-2 pe-1"
+              (click)="setView(CalendarView.Week)"
+              [class.active]="view === CalendarView.Week"
+            >
+              Week
+            </div>
+            <div
+              class="btn btn-primary buttons text-white ps-3 py-2"
+              (click)="setView(CalendarView.Day)"
+              [class.active]="view === CalendarView.Day"
+            >
+              Day
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div [ngSwitch]="view">
+        <mwl-calendar-month-view
+          class="calendarFull"
+          [cellTemplate]="customCellTemplate"
+          *ngSwitchCase="CalendarView.Month"
+          [viewDate]="viewDate"
+          [events]="events"
+          [refresh]="refresh"
+          [activeDayIsOpen]="activeDayIsOpen"
+          (dayClicked)="dayClicked($event.day)"
+        >
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view
+          *ngSwitchCase="CalendarView.Week"
+          [viewDate]="viewDate"
+          [events]="events"
+          [refresh]="refresh"
+        >
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view
+          *ngSwitchCase="CalendarView.Day"
+          [viewDate]="viewDate"
+          [events]="events"
+          [refresh]="refresh"
+        >
+        </mwl-calendar-day-view>
+      </div>
+
+      <br />
+    </div>
+  </div>
+  <button
+    type="button"
+    style="display: none"
+    class="btn btn-primary openModal"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    data-bs-backdrop="false"
+  >
+    Launch demo modal
+  </button>
+
+  <!-- Display Event Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    data-bs-backdrop="false"
+    data-bs-dismiss="modal"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header p-0">
+          <div id="exampleModalLabel" class="p-0">
+            <img
+              class="modal-title"
+              class="modalImg img-fluid"
+              src="{{ curEve['eventUrl'] }}"
+              alt=""
+            />
+          </div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p class="event-title mb-1">{{ curEve["eventName"] }}</p>
+          <p class="event-desc">
+            {{ curEve["eventDesc"] }}
+          </p>
+          <p class="event-date mb-0">{{ curEve["eventDate"] | date }}</p>
+          <p class="event-time mt-0 mb-0">
+            {{ "01/01/2011 " + curEve["start"] | date: "shortTime" }} -
+            {{ "01/01/2011 " + curEve["end"] | date: "shortTime" }}
+            <span
+              style="margin-left: 250px; cursor: pointer"
+              (click)="removeCalendar(curEve['event_id'])"
+              >Delete</span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  style="display: none"
+  class="btn btn-primary eventModal"
+  data-bs-toggle="modal"
+  data-bs-target="#addEventModal"
+  data-bs-backdrop="false"
+>
+  Launch demo modal
+</button>
+
+<!-- Add Event Modal -->
+<div
+  class="modal fade"
+  id="addEventModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="false"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div id="exampleModalLabel" class="form-title">Add Event</div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="form-box">
+          <p class="form-title">Event Information</p>
+          <form #eventForm="ngForm">
+            <div class="mb-3">
+              <label for="eventname" class="form-label mb-0">Event Name</label>
+              <input
+                type="text"
+                class="form-control mt-0 pt-0"
+                id="eventname"
+                name="eventname"
+                [(ngModel)]="EventData.eventName"
+                #eventname="ngModel"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="eventdesc" class="form-label mb-0"
+                >Event Description</label
+              >
+              <input
+                type="text"
+                class="form-control pb-3"
+                id="eventdesc"
+                name="eventdesc"
+                [(ngModel)]="EventData.eventDesc"
+                #eventdesc="ngModel"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="eventurl" class="form-label mb-0">Event Url</label>
+              <input
+                type="text"
+                class="form-control"
+                id="eventurl"
+                name="eventurl"
+                [(ngModel)]="EventData.eventUrl"
+                #eventurl="ngModel"
+                required
+              />
+            </div>
+
+            <div class="mb-3 row">
+              <div class="col">
+                <label for="start" class="form-label mb-0">Start Time</label>
+                <input
+                  type="time"
+                  class="form-control"
+                  id="start"
+                  name="start"
+                  [(ngModel)]="EventData.start"
+                  #start="ngModel"
+                  required
+                />
+              </div>
+              <div class="col">
+                <label for="end" class="form-label mb-0">End Time</label>
+                <input
+                  type="time"
+                  class="form-control"
+                  id="end"
+                  name="end"
+                  [(ngModel)]="EventData.end"
+                  #end="ngModel"
+                  required
+                />
+              </div>
+            </div>
+            <span class="error" *ngIf="eventForm.touched && eventForm.invalid">
+              All fields are required
+            </span>
+            <span class="error">{{ errMsg }}</span>
+            <div class="ms-5 mt-1">
+              <a class="cancel" data-bs-dismiss="modal">Cancel</a
+              ><button
+                class="btn btn-primary addeve"
+                (click)="saveData()"
+                data-bs-dismiss="modal"
+              >
+                Add Event
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Success modal -->
+<button
+  type="button"
+  class="btn btn-primary successModal"
+  data-bs-toggle="modal"
+  style="display: none"
+  data-bs-target="#successModal"
+>
+  hi
+</button>
+<div
+  class="modal fade"
+  id="successModal"
+  tabindex="-1"
+  aria-labelledby="successModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog successModal-dialog">
+    <div class="modal-content successModal-content">
+      <div class="modal-body successModal-body">
+        <div>
+          <span class="x"
+            ><button
+              type="button"
+              class="btn modal-btn"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <img
+                src="https://img.icons8.com/material-rounded/12/FFFFFF/delete-sign.png"
+              /></button
+          ></span>
+          <span class="successModal-text">
+            Event successfully added to your calendar
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Err modal -->
+<button
+  type="button"
+  class="btn btn-primary errModal"
+  data-bs-toggle="modal"
+  data-bs-target="#errModal1"
+  style="display: none !important"
+>
+  hi
+</button>
+<div
+  class="modal fade"
+  id="errModal1"
+  tabindex="-1"
+  aria-labelledby="errModal1"
+  aria-hidden="true"
+  data-bs-backdrop="true"
+>
+  <div class="modal-dialog errModal-dialog">
+    <div class="modal-content errModal-content">
+      <div class="modal-body errModal-body">
+        <div>
+          <span class="x"
+            ><button
+              type="button"
+              class="btn modal-btn errModal-btn"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <img
+                src="https://img.icons8.com/material-rounded/12/FFFFFF/delete-sign.png"
+              /></button
+          ></span>
+          <span class="modal-text errModal-text">
+            Successfully removed an event
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

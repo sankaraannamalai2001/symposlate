@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import { FormsModule } from '@angular/forms';
+import { CalendarViewComponent } from './calendar-view/calendar-view.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,8 +24,19 @@ import { FormsModule } from '@angular/forms';
     EditEventComponent,
     AllEventComponent,
     MycalendarComponent,
+    CalendarViewComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    BrowserAnimationsModule,
+  ],
   providers: [AuthService, EventService],
   bootstrap: [AppComponent],
 })

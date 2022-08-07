@@ -6,6 +6,7 @@ import { EditEventComponent } from './edit-event/edit-event.component';
 import { LoginComponent } from './login/login.component';
 import { MycalendarComponent } from './mycalendar/mycalendar.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { CalendarViewComponent } from './calendar-view/calendar-view.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -34,6 +35,10 @@ const routes: Routes = [
     path: 'mycalendar',
     component: MycalendarComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'calendarview',
+    component: CalendarViewComponent,
   },
   {
     path: '**',
