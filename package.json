@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "heroku-postbuild": "ng build --prod"
+    "heroku-postbuild": "ng build --prod",
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
@@ -44,7 +45,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.11",
-    "@angular/cli": "~12.2.11",
+    "@angular/cli": "^12.2.18",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
