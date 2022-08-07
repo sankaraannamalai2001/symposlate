@@ -1,5 +1,3 @@
-var Sequelize = require("sequelize");
-const Op = Sequelize.Op;
 const bCrypt = require("bcrypt");
 const User = require("../model/userModel");
 const passport = require("passport");

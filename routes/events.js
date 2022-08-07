@@ -1,5 +1,4 @@
 const express = require("express");
-const { isLoggedIn } = require("../utils/middleware");
 const eventCon = require("../controller/eventController");
 const router = express.Router();
 router.get("/", (req, res) => {

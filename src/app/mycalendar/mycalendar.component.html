@@ -1,3 +1,8 @@
+<link
+  rel="stylesheet"
+  href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css"
+/>
+<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
 <div
   class="body"
   [ngClass]="{ 'body-inactive': isFEventEmpty && isPEventEmpty }"
@@ -8,7 +13,8 @@
     </div>
     <div class="logout pe-md-5 pt-3">
       <p>
-        Hi {{ username | titlecase }} | <a (click)="logoutUser()">Logout</a>
+        Hi {{ username | titlecase }} |
+        <a class="logout" (click)="logoutUser()">Logout</a>
       </p>
     </div>
   </nav>
@@ -18,12 +24,21 @@
   >
     <a routerLink="/allevent" class="notactive">All Events</a>
     <a class="active">My Calendar</a>
+    <a routerLink="/calendarview" class="notactive">Calendar View</a>
   </div>
+
   <div
     class="main container"
     [ngClass]="{ 'main-inactive': isFEventEmpty && isPEventEmpty }"
   >
-    <p class="main-title" *ngIf="!isFEventEmpty">Upcoming events</p>
+    <div class="text-center mt-3" *ngIf="isloading">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <p class="main-title" *ngIf="!isFEventEmpty && !isloading">
+      Upcoming events
+    </p>
     <p class="main-title" *ngIf="isFEventEmpty && isPEventEmpty">My Calendar</p>
     <div class="empty-img" *ngIf="isFEventEmpty && isPEventEmpty">
       <img src="../../assets/nodata.png" class="img-fluid empty" />
@@ -56,7 +71,7 @@
         </div>
       </div>
     </div>
-    <p class="main-title" *ngIf="!isPEventEmpty">Past events</p>
+    <p class="main-title" *ngIf="!isPEventEmpty && !isloading">Past events</p>
     <div *ngFor="let i of pevents" class="event-container">
       <div *ngIf="i.isScheduled">
         <div class="event-box row p-2 mb-3">

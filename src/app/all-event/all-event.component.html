@@ -21,13 +21,21 @@
     <a *ngIf="isAdmin" class="notactive" routerLink="/mycalendar"
       >My Calendar</a
     >
+    <a routerLink="/calendarview" *ngIf="isAdmin" class="notactive"
+      >Calendar View</a
+    >
   </div>
   <div
     class="main container"
     [ngClass]="{ 'main-inactive': isFEventEmpty && isPEventEmpty }"
   >
-    <p class="main-title" *ngIf="!isFEventEmpty">
-      Upcoming events
+    <div class="text-center mt-3" *ngIf="isloading">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <p class="main-title">
+      <span *ngIf="!isFEventEmpty && !isloading">Upcoming events</span>
       <button
         *ngIf="!isAdmin"
         class="addeve btn btn-primary"
@@ -109,7 +117,7 @@
       </div>
     </div>
 
-    <p class="main-title" *ngIf="!isPEventEmpty">Past events</p>
+    <p class="main-title" *ngIf="!isPEventEmpty && !isloading">Past events</p>
     <div *ngIf="isAdmin">
       <div *ngFor="let i of pevents" class="event-container">
         <div class="event-box row p-2 mb-3">

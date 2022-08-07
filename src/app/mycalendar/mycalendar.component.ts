@@ -15,6 +15,7 @@ export class MycalendarComponent implements OnInit {
     private router: Router,
     route: ActivatedRoute
   ) {
+    this.isloading = true;
     route.params.subscribe((val) => {
       // put the code from `ngOnInit` here
       this.user = localStorage.getItem('userInfo');
@@ -28,6 +29,7 @@ export class MycalendarComponent implements OnInit {
       }
     });
   }
+  isloading: boolean = false;
   public user: any;
   public username: any;
   mycalendar: string[] = [];
@@ -96,6 +98,7 @@ export class MycalendarComponent implements OnInit {
     if (this.fevents.length === 0 || this.mycalendar.length === 0)
       this.isFEventEmpty = true;
     else this.isFEventEmpty = false;
+    this.isloading = false;
   }
   logoutUser() {
     this.auth.LogoutUser();

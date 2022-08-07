@@ -7,7 +7,6 @@ var User = require("./model/userModel");
 var events = require("./routes/events");
 var app = express();
 var cookieParser = require("cookie-parser");
-var env = require("dotenv").config();
 const sequelize = require("./utils/db");
 const cors = require("cors");
 const path = require("path");

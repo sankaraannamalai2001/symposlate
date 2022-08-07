@@ -15,6 +15,7 @@ export class AllEventComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     route.params.subscribe((val) => {
+      this.isloading = true;
       // put the code from `ngOnInit` here
       this.user = localStorage.getItem('userInfo');
       this.username = JSON.parse(this.user).user;
@@ -24,6 +25,7 @@ export class AllEventComponent implements OnInit {
       }
     });
   }
+  isloading: boolean = false;
   public user: any;
   public username: any;
   pevents: any = [];
@@ -116,5 +118,6 @@ export class AllEventComponent implements OnInit {
     else this.isPEventEmpty = false;
     if (this.fevents.length === 0) this.isFEventEmpty = true;
     else this.isFEventEmpty = false;
+    this.isloading = false;
   }
 }
